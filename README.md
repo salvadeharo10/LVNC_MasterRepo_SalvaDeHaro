@@ -61,7 +61,7 @@ To ensure reproducibility, all experiments are version-controlled and linked to 
 
 **Salvador de Haro**
 
-📧 Email: salvador.deharo@um.es  
+📧 Email: salvadorde.haroo@um.es  
 🏛 Institution: University of Murcia  
 🔗 GitHub: https://github.com/salvadeharo10
 🔗 LinkedIn: www.linkedin.com/in/salvador-de-haro-orenes-a8b841270
