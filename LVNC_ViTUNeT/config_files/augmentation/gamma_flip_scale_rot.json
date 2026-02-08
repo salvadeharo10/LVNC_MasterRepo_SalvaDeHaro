@@ -1,0 +1,64 @@
+{
+    "framework": "albumentations",
+    "pipeline": {
+      "__version__": "0.5.2",
+      "transform": {
+        "__class_fullname__": "Compose",
+        "p": 1,
+        "transforms": [
+          {
+            "__class_fullname__": "RandomGamma",
+            "always_apply": false,
+            "p": 0.3,
+            "gamma_limit": [
+              20,
+              50
+            ],
+            "eps": null
+          },
+          {
+            "__class_fullname__": "HorizontalFlip",
+            "always_apply": false,
+            "p": 0.5
+          },
+          {
+            "__class_fullname__": "VerticalFlip",
+            "always_apply": false,
+            "p": 0.5
+          },
+          {
+            "__class_fullname__": "CropAndPad",
+            "always_apply": false,
+            "p": 1,
+            "px": null,
+            "percent": [
+              -0.3,
+              0.1
+            ],
+            "pad_mode": 1,
+            "pad_cval": 0,
+            "pad_cval_mask": 0,
+            "keep_size": true,
+            "sample_independently": false,
+            "interpolation": 1
+          },
+          {
+            "__class_fullname__": "Rotate",
+            "always_apply": false,
+            "p": 0.2,
+            "limit": [
+              -180,
+              180
+            ],
+            "interpolation": 1,
+            "border_mode": 1,
+            "value": null,
+            "mask_value": null
+          }
+        ],
+        "bbox_params": null,
+        "keypoint_params": null,
+        "additional_targets": {}
+      }
+    }
+  }

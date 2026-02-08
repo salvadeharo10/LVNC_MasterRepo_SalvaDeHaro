@@ -1,0 +1,30 @@
+data_folder: "../LVNC_dataset"
+seed: 1122
+preproc_name: Preproc_2d_512
+_data_loader: data_loader_3_12.yaml
+_trainer: trainer_cpu_100_epochs.yaml
+callbacks:
+  early_stopping:
+    apply: True
+    params:
+      monitor: "val/loss"
+      patience: 10
+      mode: "min"
+  test_segmentation_results:
+    apply: True
+    params:
+      palette: [[0, 0, 0], [17, 165, 121], [67, 191, 222], [242, 183, 1]]
+      group_results_by: "set"
+loggers:
+  use_tensorboard: True
+  use_csv_logger: True
+loss:
+  __function: torch.nn.CrossEntropyLoss
+  params: {}
+optimizer:
+  __function: torch.optim.SGD
+  params:
+    lr: 0.01
+    momentum: 0.99
+    nesterov: True
+    weight_decay: 0.00003

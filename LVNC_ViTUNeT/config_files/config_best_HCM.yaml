@@ -1,0 +1,117 @@
+seed: 1122
+data_folder: ../../LVNC_dataset
+preproc_name: Cleaned_VIA_Preproc_2d_800_combinedresize_zscore
+
+data_loader:
+  train:
+    num_workers: 4
+    batch_size: 8
+    shuffle: true
+    pin_memory: true
+    prefetch_factor: 2
+  val:
+    num_workers: 4
+    batch_size: 8
+    shuffle: false
+    pin_memory: true
+    prefetch_factor: 2
+
+unet:
+  init: kaiming
+  classes:
+  - bg
+  - el
+  - ic
+  - t
+  channels:
+  - 1
+  - 32
+  - 64
+  - 128
+  - 256
+  - 512
+  - 1024
+  pool: true
+  conv_config:
+    __normalization: torch.nn.InstanceNorm2d
+    normalization_params:
+      eps: 1.0e-05
+      momentum: 0.1
+      affine: true
+      track_running_stats: false
+    __activation: torch.nn.LeakyReLU
+    activation_params:
+      inplace: true
+      negative_slope: 0.01
+
+transformer:
+  hidden_size: 768
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 12
+  attention_dropout_rate: 0.0
+  dropout_rate: 0.1
+  patches:
+    size:
+    - 32
+    - 32
+    grid:
+    - 32
+    - 32
+  classifier: 'seg'
+  representation_size: None
+  pretrained_path: './model_preTrained/tu_checkpoint/imagenet21k/imagenet21k_ViT-B_32.npz'
+  patch_size: 32
+  img_size: 800
+  n_classes: 4
+  activation: 'softmax'
+
+trainer:
+  accelerator: "gpu"
+  precision: 16-mixed
+  deterministic: false
+  max_epochs: 100
+  min_epochs: 1
+  gradient_clip_val: 1.0
+
+callbacks:
+  early_stopping:
+    apply: true
+    params:
+      monitor: val/loss
+      patience: 11
+      mode: min
+  test_segmentation_results:
+    apply: true
+    params:
+      palette:
+      - - 0
+        - 0
+        - 0
+      - - 17
+        - 165
+        - 121
+      - - 67
+        - 191
+        - 222
+      - - 242
+        - 183
+        - 1
+      group_results_by: set
+
+loggers:
+  use_tensorboard: true
+  use_csv_logger: true
+
+loss:
+  __function: loss.lovasz.LovaszSoftmaxLoss
+  channel_dim: false
+  params:
+    classes: present
+    apply_softmax: true
+
+optimizer:
+  __function: torch_optimizer.RAdam
+  params:
+    lr: 0.0025
+    weight_decay: 1.0e-05
