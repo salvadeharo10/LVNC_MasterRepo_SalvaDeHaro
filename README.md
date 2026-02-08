@@ -58,7 +58,9 @@ To ensure reproducibility, all experiments are version-controlled and linked to 
 ---
 
 ## Author - Contact
+
 **Salvador de Haro**
+
 📧 Email: salvador.deharo@um.es  
 🏛 Institution: University of Murcia  
 🔗 GitHub: https://github.com/salvadeharo10
