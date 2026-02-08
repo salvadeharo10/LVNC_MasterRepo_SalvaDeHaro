@@ -61,12 +61,11 @@ To ensure reproducibility, all experiments are version-controlled and linked to 
 
 ## 📂 Repository Structure
 
-.
-├── GACOP_Scripts
-├── LVNC_ViTUNet
-├── LVNC_datasets
-└── README.md
-
+. <br>
+├── GACOP_Scripts <br>
+├── LVNC_ViTUNet <br>
+├── LVNC_datasets <br>
+└── README.md <br>
 
 ---
 
