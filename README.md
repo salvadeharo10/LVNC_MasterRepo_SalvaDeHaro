@@ -71,5 +71,5 @@ To ensure reproducibility, all experiments are version-controlled and linked to 
 Clone the repository:
 
 ```bash
-git clone https://github.com/<username>/LVNC_MasterRepo_SalvaDeHaro.git
+git clone https://github.com/salvadeharo10/LVNC_MasterRepo_SalvaDeHaro.git
 cd LVNC_MasterRepo_SalvaDeHaro
